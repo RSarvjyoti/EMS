@@ -45,42 +45,42 @@ const EmployeeList = () => {
       {Array.isArray(employees) && employees.length === 0 ? (
         <p className="text-center text-gray-500 py-8">No employees found.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="space-y-4">
           {Array.isArray(employees) &&
             employees.map((employee) => (
               <div
                 key={employee._id}
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                className="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 flex items-center"
               >
-                <div className="aspect-w-16 aspect-h-9">
-                  <img
-                    src={employee.profilePic || "https://via.placeholder.com/100"}
-                    alt={employee.name}
-                    className="w-full h-48 object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                <img
+                  src={employee.profilePic || "https://via.placeholder.com/100"}
+                  alt={employee.name}
+                  className="w-16 h-16 rounded-full object-cover mr-4"
+                />
+                
+                <div className="flex-grow">
+                  <h3 className="text-lg font-semibold text-gray-800">
                     {employee.name}
                   </h3>
-                  <p className="text-gray-600 mb-1">{employee.position}</p>
-                  <p className="text-gray-500 mb-4">{employee.contact}</p>
-                  <div className="flex justify-end space-x-2">
-                    <button
-                      onClick={() => handleEdit(employee)}
-                      className="flex items-center px-3 py-2 bg-indigo-100 text-indigo-600 rounded-md hover:bg-indigo-200 transition-colors duration-200"
-                    >
-                      <FiEdit2 className="w-4 h-4 mr-1" />
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(employee._id)}
-                      className="flex items-center px-3 py-2 bg-red-100 text-red-600 rounded-md hover:bg-red-200 transition-colors duration-200"
-                    >
-                      <FiTrash2 className="w-4 h-4 mr-1" />
-                      Delete
-                    </button>
-                  </div>
+                  <p className="text-sm text-gray-600">{employee.position}</p>
+                  <p className="text-sm text-gray-500">{employee.contact}</p>
+                </div>
+
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleEdit(employee)}
+                    className="flex items-center px-3 py-2 bg-indigo-100 text-indigo-600 rounded-md hover:bg-indigo-200 transition-colors duration-200"
+                  >
+                    <FiEdit2 className="w-4 h-4 mr-1" />
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(employee._id)}
+                    className="flex items-center px-3 py-2 bg-red-100 text-red-600 rounded-md hover:bg-red-200 transition-colors duration-200"
+                  >
+                    <FiTrash2 className="w-4 h-4 mr-1" />
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
