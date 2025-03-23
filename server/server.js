@@ -7,6 +7,7 @@ const authRoutes = require("./routes/authRoutes");
 const cors = require("cors");
 
 const DB_URL = process.env.DB_URL;
+const PORT = process.env.PORT || 9080;
 
 connectDB(DB_URL);
 
@@ -16,6 +17,8 @@ app.use(cors());
 
 app.use("/api/employees", employeeRoutes);
 app.use("/api/auth", authRoutes);
+app.get('/', (req, res) => {
+    res.send("<h1>Welcome to the EMS.This is a home route.</h2>")
+})
 
-const PORT = process.env.PORT || 9080;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
